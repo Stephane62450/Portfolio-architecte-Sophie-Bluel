@@ -188,3 +188,36 @@ footer nav ul {
 	
 }
 
+                /****** Ajout de la partie des filtres ******/
+.filtres {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.filtre {
+	border: 1px solid;
+	border-color: #1D6154;
+	color: #1D6154;
+	border-radius: 60px;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	font-family: 'syne';
+	cursor: pointer;
+}
+
+.filtre:hover {
+	border: 1px solid;
+	border-color: #1D6154;
+	background-color: #1D6154;
+	color: white;
+	border-radius: 60px;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	font-family: 'syne';
+	cursor: pointer;
+}
