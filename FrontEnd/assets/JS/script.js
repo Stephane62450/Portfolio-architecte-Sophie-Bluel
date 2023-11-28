@@ -96,3 +96,8 @@ async function main() {
         afficherCategories(categories, works);
 }
 main();
+
+// Stocker le token d'authentification
+const token = sessionStorage.getItem("token");
+
+
