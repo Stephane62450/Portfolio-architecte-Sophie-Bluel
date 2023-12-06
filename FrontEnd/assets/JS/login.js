@@ -25,7 +25,7 @@ async function authentification() {
 
     } else {
         // Si la propriété "token" de "résultat" est "undefined"
-        alert("Les identifiants sont incorrects")
+        alert("Erreur dans l'identifiant ou le mot de passe")
     }
 }
 

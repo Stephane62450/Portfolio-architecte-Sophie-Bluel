@@ -16,6 +16,10 @@
 </head>
 
 <body>
+	<div class="mode-edition">
+		<i class="fa-regular fa-pen-to-square"></i>
+		<button class="edition">Mode édition</button>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -45,6 +49,10 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes projets</h2>
+			<div class="modifier">
+				<i class="fa-regular fa-pen-to-square"></i>
+				<p>modifier</p>
+			</div>
 			<section class="filtres">
 			</section>
 			<div class="gallery"></div>
@@ -62,6 +70,23 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
+		<div class="modale">
+			<div class="modale-header">
+				<div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+				<!-- Afficher si modalMode === "create" sinon masquer -->
+				<div class="close-modale"><i class="fa-solid fa-xmark"></i></div>
+			</div>
+			<!-- Vue pour afficher la liste des travaux avec possibilité de supprimer les travaux modalMode === "list" -->
+			<div class="list">
+				<h2>Galerie photo</h2>
+				<button class="add-picture">Ajouter une photo</button>
+			</div>
+			<!-- Vue pour ajouter un travail  modalMode === "create" -->
+			<div class="create">
+				<h2>Ajout photo</h2>
+				<button class="valider">valider</button>
+			</div>
+		</div>
 	</main>
 
 	<footer>

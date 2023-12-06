@@ -284,6 +284,7 @@ input[type="submit"] {
 	justify-content: center;
 	border-radius: 60px;
 	padding: 0;
+	cursor: pointer;
 }
 
 footer nav ul {
@@ -400,14 +401,157 @@ label[for="password"] {
 	height: 60px;
 	align-items: center;
 	justify-content: flex-end;
-	
+
 }
 
 #footer-login a {
-	color:#000000;
+	color: #000000;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 300;
 	line-height: normal;
 	font-family: Work Sans;
 }
+
+/****** Page édition ******/
+
+.mode-edition {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #000000;
+	color: #FFFFFF;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 16px;
+}
+
+.mode-edition i {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.mode-edition .edition {
+	background-color: transparent;
+	border: none;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.modifier {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	cursor: pointer;
+	position: relative;
+	top: -50px;
+	left: 150px;
+}
+
+
+
+
+
+/****** MODALE ******/
+
+.modale {
+	position: absolute;
+	top: 530px;
+	left: 33%;
+	width: 630px;
+	height: 688px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 25px 15px;
+
+}
+
+.modale-header {
+	position: relative;
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.back {
+	position: relative;
+	display: flex;
+	width: 24px;
+	height: 24px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+ .close-modale {
+	position: relative;
+	display: flex;
+	width: 24px;
+	height: 24px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+ }
+
+ .list h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 26px;
+	font-weight: 400;
+	color: #000000;
+ }
+
+ .add-picture {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 60px;
+	background-color: #1D6154;
+	color: white;
+	border: 1px solid;
+	line-height: 16.8px;
+	width: 237px;
+	height: 36px;
+	font-weight: 700;
+	font-size: 14px;
+	font-family: 'Syne';
+ }
+
+ .create h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 26px;
+	font-weight: 400;
+	color: #000000;
+ }
+
+ .valider {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 60px;
+	background-color: #1D6154;
+	color: white;
+	border: 1px solid;
+	line-height: 16.8px;
+	width: 237px;
+	height: 36px;
+	font-weight: 700;
+	font-size: 14px;
+	font-family: 'Syne';
+ }
