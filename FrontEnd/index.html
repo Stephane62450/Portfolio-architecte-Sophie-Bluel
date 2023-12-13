@@ -79,13 +79,29 @@
 			<!-- Vue pour afficher la liste des travaux avec possibilité de supprimer les travaux modalMode === "list" -->
 			<div class="list">
 				<h2>Galerie photo</h2>
-				<button class="add-picture">Ajouter une photo</button>
+				<div class="list-container"></div>
+				<div class="ligne"></div>
+				<div class="modal-footer">
+					<button class="add-picture">Ajouter une photo</button>
+				</div>
 			</div>
 			<!-- Vue pour ajouter un travail  modalMode === "create" -->
-			<div class="create">
+			<form class="create" action="#">
 				<h2>Ajout photo</h2>
-				<button class="valider">valider</button>
-			</div>
+				<div class="form-content">
+					<input type="file" name="file" required />
+					<input type="text" name="title" placeholder="Titre" required/>
+					<select name="category" required>
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hôtels & restaurants</option>
+					</select>
+				</div>
+				<div class="ligne"></div>
+				<div class="modal-footer">
+					<button type="submit" class="valider">valider</button>
+				</div>
+			</form>
 		</div>
 	</main>
 

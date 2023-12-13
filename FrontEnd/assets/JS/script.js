@@ -79,43 +79,87 @@ const logout = (event) => {
 
 const modalClassname = ".modale";
 
+// Fonction pour cacher la modale
 function hideModal() {
         const modal = document.querySelector(modalClassname);
         modal.style.display = "none";
 }
 
+// Fonction pour montrer la modale
 function showModal() {
         const modal = document.querySelector(modalClassname);
         modal.style.display = "block";
         switchModalMode("list");
 }
 
+// Fonction pour changer le mode de la modale
 function switchModalMode(mode) {
         const modal = document.querySelector(modalClassname);
         const listContainer = modal.querySelector(".list");
         const createContainer = modal.querySelector(".create");
-        const back = document.querySelector(".back");
         if (mode === "list") {
                 // on affiche le mode list
-                back.style.display = "none";
                 listContainer.style.display = "block"
                 createContainer.style.display = "none"
         } else if (mode === "create") {
                 // on affiche le mode create
-                back.style.display = "block";
                 createContainer.style.display = "block"
                 listContainer.style.display = "none"
         }
 }
 
-function generateModalList() {
+async function deleteWork(work) {
+        // supprime le work
+        const reponse = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+                method: "DELETE",
+                headers: {
+                        Authorization: `Bearer ${token}`
+                }
+        });
+        const result = await reponse.json();
+        return result;
+}
+
+// Fonction  pour générer la liste
+function generateModalList(works) {
         const modal = document.querySelector(modalClassname);
         const addPictureBtn = modal.querySelector(".list .add-picture");
+
         // Afficher la liste des travaux
+        const listContainer = modal.querySelector(".list-container");
 
-        // Pour chaque travaux on génère le dom (image + bouton avec icon poubelle)
+        listContainer.innerHTML = "";
 
-        // on attache un évènement click sur le bouton pour appeler la route de suppression (delete)
+        function generateWorkElement(work) {
+                // On crée une div temporaire
+                const div = document.createElement("div");
+                // On injecte l'élement que le souhaite générer avec des templates strings
+                div.innerHTML = `
+                        <div class="list-item">
+                                <img src="${work.imageUrl}" />
+                                <figcaption>${work.title}</figcaption>
+                                <button class="delete-work"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                `;
+
+                const deleteBtn = div.querySelector('.delete-work');
+
+                // on attache un évènement click sur le bouton pour appeler la route de suppression (delete)
+                deleteBtn.addEventListener('click', () => {
+                        deleteWork(work);
+                        window.location.reload();
+                })
+
+                // On retourne le premier element de notre div temporaire;
+                return div.firstElementChild;
+        }
+
+        for (let i = 0; i < works.length; i++) {
+                const work = works[i];
+                const workElement = generateWorkElement(work);
+                listContainer.append(workElement);
+        }
+
 
         // Ajouter l'évènement click pour switcher au mode create
         addPictureBtn.addEventListener("click", () => {
@@ -123,33 +167,64 @@ function generateModalList() {
         })
 }
 
-function generateModalCreate() {
+// Fonction pour ajouter une photo 
+function generateModalCreate(categories) {
         const modal = document.querySelector(modalClassname);
         const backBtn = modal.querySelector(".back");
+        const form = modal.querySelector('form.create');
         // Ajouter l'évènement retour pour la flèche retour
         backBtn.addEventListener("click", () => {
                 switchModalMode("list")
         })
         // Ajouter l'évènement submit pour le formulaire
+        form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const titleElement = form.querySelector('[name="title"]')
+                const categoryElement = form.querySelector('[name="category"]')
+                const fileInputElement = form.querySelector('[name="file"]')
+                const formData = new FormData();
 
+                if (titleElement.value.length > 0 && categoryElement.value.length > 0, fileInputElement.files.length > 0) {
+                        formData.append("title", titleElement.value);
+                        formData.append("category", parseInt(categoryElement.value));
+
+                        // fichier HTML choisi par l'utilisateur
+                        formData.append("image", fileInputElement.files[0]);
+
+                        const response = await fetch("http://localhost:5678/api/works", {
+                                method: 'POST',
+                                headers: {
+                                        Authorization: `Bearer ${token}`,
+
+                                },
+                                body: formData
+                        });
+                        const result = response.json();
+
+                        // window.location.reload();
+                } else {
+                        alert("Veuillez compléter le formulaire")
+                }
+        })
         // retour au mode list
 }
 
-function generateModal() {
+// Modale
+function generateModal(categories, works) {
         const modal = document.querySelector(modalClassname);
         const closeBtn = modal.querySelector(".close-modale")
         // Ajouter l'évènement fermer sur la croix
         closeBtn.addEventListener("click", hideModal);
         // on genere le dom et les event pour la partie liste
-        generateModalList()
+        generateModalList(works)
         // on genere le dom et les event pour la partie create
-        generateModalCreate()
+        generateModalCreate(categories)
 }
 
 /****** Partie Mode édition ******/
 
 // Fonction admin
-function admin() {
+function admin(categories, works) {
         // Éléments HTML nécessaires
         const banniere = document.querySelector(".mode-edition");
         const btnModifier = document.querySelector(".modifier");
@@ -167,7 +242,7 @@ function admin() {
                 filtres.style.display = "none";
                 btnModifier.addEventListener("click", showModal)
                 // On génère la modale
-                generateModal()
+                generateModal(categories, works)
         } else {
                 btnModifier.style.display = "none";
                 banniere.style.display = "none";
@@ -183,14 +258,13 @@ async function main() {
         // Récupération des catégories depuis l'API //
         const reponse2 = await fetch("http://localhost:5678/api/categories");
         const categories = await reponse2.json();
-        // const categories = getCategoriesFromWorks(works);
         console.log(categories);
 
         afficherWorks(works);
 
         afficherCategories(categories, works);
 
-        admin();
+        admin(categories, works);
 }
 
 main();
