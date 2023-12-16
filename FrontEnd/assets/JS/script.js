@@ -208,8 +208,38 @@ function generateModalCreate(categories) {
                 } else {
                         alert("Veuillez compléter le formulaire")
                 }
-        })
-        // retour au mode list
+        });
+// Ajout de l'événement pour prévisualiser la photo avant ajout
+
+const fileInputElement = form.querySelector('[name="file"]');
+const imagePreviewElement = form.querySelector(".image-preview");
+const rectangleGris = document.querySelector(".rectangle-gris");
+const faImage = rectangleGris.querySelector(".fa-image");
+const btnAddPhoto = rectangleGris.querySelector(".btn-addphoto");
+const paragraphe = rectangleGris.querySelector("p");
+
+fileInputElement.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+
+        // Vérifier si un fichier a été sélectionné
+        if (file) {
+                // Créer un objet URL pour la prévisualisation de l'image
+                const imageUrl = URL.createObjectURL(file);
+                // Afficher l'image prévisualisée
+                imagePreviewElement.src = imageUrl;
+                imagePreviewElement.style.display = "block";
+                imagePreviewElement.style.visibility = "visible";
+                faImage.style.visibility = "hidden";
+                btnAddPhoto.style.visibility = "hidden";
+                paragraphe.style.visibility = "hidden";
+
+
+        } else {
+                // Si aucun fichier n'est sélectionné, masquer la prévisualisation
+                imagePreviewElement.src = "";
+                imagePreviewElement.style.display = "none";
+        }
+});
 }
 
 // Modale

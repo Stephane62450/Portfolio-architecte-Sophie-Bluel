@@ -534,7 +534,7 @@ label[for="password"] {
 .list-container {
 	display: flex;
 	flex-wrap: wrap;
-	width: 70%;
+	width: 71%;
 	gap: 30px 10px;
 	overflow-y: scroll;
 	left: 100px;
@@ -689,6 +689,10 @@ select[name="category"] {
 	margin-top: 10px;
 }
 
+.image-preview {
+	position: fixed;
+}
+
 h3 {
 	height: 16px;
 	font-family: 'Work Sans', sans-serif;
@@ -712,4 +716,5 @@ h3 {
 	font-weight: 700;
 	font-size: 14px;
 	font-family: 'Syne';
+	cursor: pointer;
 }
