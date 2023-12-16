@@ -71,37 +71,47 @@
 			</form>
 		</section>
 		<div class="modale">
-			<div class="modale-header">
-				<div class="back"><i class="fa-solid fa-arrow-left"></i></div>
-				<!-- Afficher si modalMode === "create" sinon masquer -->
-				<div class="close-modale"><i class="fa-solid fa-xmark"></i></div>
+		<div class="modale-content">
+				<div class="modale-header">
+					<div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+					<!-- Afficher si modalMode === "create" sinon masquer -->
+					<div class="close-modale"><i class="fa-solid fa-xmark"></i></div>
+				</div>
+				<!-- Vue pour afficher la liste des travaux avec possibilité de supprimer les travaux modalMode === "list" -->
+				<div class="list">
+					<h2>Galerie photo</h2>
+					<div class="list-container"></div>
+					<div class="ligne"></div>
+					<div class="modal-footer">
+						<button class="add-picture">Ajouter une photo</button>
+					</div>
+				</div>
+				<!-- Vue pour ajouter un travail  modalMode === "create" -->
+				<form class="create" action="#">
+					<h2>Ajout photo</h2>
+					<div class="form-content">
+						<div class="rectangle-gris">
+							<i class="fa-solid fa-image"></i>
+							<button class="btn-addphoto">+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+							<input type="file" name="file" required />
+						</div>
+						<h3>Titre</h3>
+						<input type="text" name="title" required />
+						<h3>Catégorie</h3>
+						<select name="category" required>
+							<option value="" disabled selected>Veuillez sélectionner une catégorie</option>
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hôtels & restaurants</option>
+						</select>
+					</div>
+					<div class="ligne"></div>
+					<div class="modal-footer">
+						<button type="submit" class="valider">valider</button>
+					</div>
+				</form>
 			</div>
-			<!-- Vue pour afficher la liste des travaux avec possibilité de supprimer les travaux modalMode === "list" -->
-			<div class="list">
-				<h2>Galerie photo</h2>
-				<div class="list-container"></div>
-				<div class="ligne"></div>
-				<div class="modal-footer">
-					<button class="add-picture">Ajouter une photo</button>
-				</div>
-			</div>
-			<!-- Vue pour ajouter un travail  modalMode === "create" -->
-			<form class="create" action="#">
-				<h2>Ajout photo</h2>
-				<div class="form-content">
-					<input type="file" name="file" required />
-					<input type="text" name="title" placeholder="Titre" required/>
-					<select name="category" required>
-						<option value="1">Objets</option>
-						<option value="2">Appartements</option>
-						<option value="3">Hôtels & restaurants</option>
-					</select>
-				</div>
-				<div class="ligne"></div>
-				<div class="modal-footer">
-					<button type="submit" class="valider">valider</button>
-				</div>
-			</form>
 		</div>
 	</main>
 

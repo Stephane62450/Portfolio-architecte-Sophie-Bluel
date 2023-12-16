@@ -88,22 +88,25 @@ function hideModal() {
 // Fonction pour montrer la modale
 function showModal() {
         const modal = document.querySelector(modalClassname);
-        modal.style.display = "block";
+        modal.style.display = "flex";
         switchModalMode("list");
 }
 
 // Fonction pour changer le mode de la modale
 function switchModalMode(mode) {
         const modal = document.querySelector(modalClassname);
+        const back = modal.querySelector(".back");
         const listContainer = modal.querySelector(".list");
         const createContainer = modal.querySelector(".create");
         if (mode === "list") {
                 // on affiche le mode list
                 listContainer.style.display = "block"
+                back.style.visibility = "hidden"
                 createContainer.style.display = "none"
         } else if (mode === "create") {
                 // on affiche le mode create
                 createContainer.style.display = "block"
+                back.style.visibility = "visible"
                 listContainer.style.display = "none"
         }
 }
