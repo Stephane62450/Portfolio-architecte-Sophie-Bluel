@@ -1,4 +1,5 @@
 function afficherWorks(works) {
+        // Sélectionner l'élément HTML avec la class gallery puis je vide son contenu HTML
         const gallery = document.querySelector(".gallery");
         gallery.innerHTML = "";
         // Récupération de l'élément du DOM qui accueillera la galerie //
@@ -23,8 +24,6 @@ function afficherWorks(works) {
                 workElement.appendChild(figcaption);
         }
 }
-
-
 
 function afficherCategories(categories, works) {
         // Récupération de l'élément du DOM qui accueillera les catégories //
@@ -223,6 +222,14 @@ function generateModalCreate(categories) {
 
                 // Vérifier si un fichier a été sélectionné
                 if (file) {
+                        // Vérifier la taille de l'image
+                        const maxSize = 4194304;
+                        if (file.size > maxSize) {
+                                alert("La taille de l'image dépasse la limite autorisée");
+                                // Réinitialiser la sélection de l'image
+                                fileInputElement.value = "";
+                                return;
+                        }
                         // Créer un objet URL pour la prévisualisation de l'image
                         const imageUrl = URL.createObjectURL(file);
                         // Afficher l'image prévisualisée

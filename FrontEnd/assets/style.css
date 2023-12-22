@@ -691,6 +691,8 @@ select[name="category"] {
 
 .image-preview {
 	position: fixed;
+	max-width: 129px;
+	max-height: 169px;
 }
 
 h3 {
